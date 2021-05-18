@@ -1,0 +1,135 @@
+{
+	"id": "d220baaa-5e2d-445b-a227-c5b4ab7d059e",
+	"name": "RibbonAutomation",
+	"timestamp": "2021-05-18T20:32:39.921Z",
+	"collection_id": "91d6c223-5ca8-4ede-9864-cc282328508b",
+	"folder_id": "34458954-1131-483b-bf7d-9bf09d096b21",
+	"environment_id": "b5e31565-3f23-4526-9a4d-4def841b4012",
+	"totalPass": 7,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "faea1bd3-3ff9-45ad-918b-5ba58badedc7",
+			"name": "POST login",
+			"url": "https://cus-api-dev.ribbonblockchain.com/api/v1/auth/login",
+			"time": 973,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true,
+				"Registered user granted access ": true,
+				"Public wallet address exists ": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Registered user granted access ": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Public wallet address exists ": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				973
+			],
+			"allTests": [
+				{
+					"Status code is 201": true,
+					"Registered user granted access ": true,
+					"Public wallet address exists ": true
+				}
+			]
+		},
+		{
+			"id": "b848b6d2-65e3-4247-83d9-22e885bcccfc",
+			"name": "GET view profile",
+			"url": "https://cus-api-dev.ribbonblockchain.com/users/profile",
+			"time": 892,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"first name is present  ": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"first name is present  ": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				892
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"first name is present  ": true
+				}
+			]
+		},
+		{
+			"id": "646ac8f3-fc67-49ee-b051-206ed045c183",
+			"name": "GET balance",
+			"url": "https://cus-api-dev.ribbonblockchain.com/users/token/balance",
+			"time": 1107,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"RBN Balance must be present": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"RBN Balance must be present": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				1107
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"RBN Balance must be present": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 2972,
+	"collection": {
+		"requests": [
+			{
+				"id": "faea1bd3-3ff9-45ad-918b-5ba58badedc7",
+				"method": "POST"
+			},
+			{
+				"id": "b848b6d2-65e3-4247-83d9-22e885bcccfc",
+				"method": "GET"
+			},
+			{
+				"id": "646ac8f3-fc67-49ee-b051-206ed045c183",
+				"method": "GET"
+			}
+		]
+	}
+}

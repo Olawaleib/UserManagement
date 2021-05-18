@@ -1,0 +1,169 @@
+{
+	"info": {
+		"_postman_id": "fe9c3921-5f08-4162-b802-df872870b633",
+		"name": "User Management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"var jsonData = JSON.parse(responseBody);\r",
+							"var access_token = jsonData.token.token;\r",
+							"var user_id = jsonData.user._id;\r",
+							"\r",
+							"pm.test(\"Registered user granted access \", function () {\r",
+							"    pm.expect(jsonData.user.status).to.eql(\"COMPLETE_REGISTRATION\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Public wallet address exists \", function () {\r",
+							"    pm.expect(jsonData.user.publicaddress).to.not.eql(\"\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"//setting access_token \r",
+							"pm.environment.set(\"access_token\",access_token);\r",
+							"\r",
+							"//setting user ID\r",
+							"pm.environment.set(\"Id\",user_id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"phoneNumber\": \"{{phoneNumber}}\",\r\n  \"pin\": \"01234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}api/v1/auth/login",
+					"host": [
+						"{{baseurl}}api"
+					],
+					"path": [
+						"v1",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View Profile",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var jsonData = JSON.parse(responseBody);\r",
+							"pm.test(\"First is Present  \", function () {\r",
+							"pm.expect(jsonData.firstName).to.not.eql('');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cus-api-dev.ribbonblockchain.com/users/profile",
+					"protocol": "https",
+					"host": [
+						"cus-api-dev",
+						"ribbonblockchain",
+						"com"
+					],
+					"path": [
+						"users",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Token Balance",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var jsonData = JSON.parse(responseBody);\r",
+							"\r",
+							"pm.test(\"RBN is present  \", function () {\r",
+							"pm.expect(jsonData.RBN).to.not.eql('');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cus-api-dev.ribbonblockchain.com/users/token/balance",
+					"protocol": "https",
+					"host": [
+						"cus-api-dev",
+						"ribbonblockchain",
+						"com"
+					],
+					"path": [
+						"users",
+						"token",
+						"balance"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
